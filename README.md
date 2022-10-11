@@ -17,12 +17,39 @@ local CSC = require(workspace:WaitForChild(CSC))
 When the client is called this event fires.
 ```lua
 CSC.ClientCalled:Connect(function(EventName : String, Arguments : Tuple)
-	-- Code here
+	if EventName == "NameHere" then -- Checks Event
+		-- Code Here
+	end
 end)
 ```
 
-### :CallServer
+### :CallServer()
 Calls server.
 ```lua
 CSC:CallServer(EventName : String, Arguments : Tuple)
+```
+
+## Server
+The server module needs to be init first.
+
+### :Init()
+The most important thing of the server module. Both modules cant run without running this method.
+```lua
+CSC:Init()
+```
+
+### .ServerCalled
+When Server Called.
+```lua
+CSC.ServerCalled:Connect(function(Player : Player, EventName : String, Arguments : Tuple)
+	if EventName == "NameHere" then -- Checks Event
+		-- Code Here
+	end
+end)
+```
+
+### :CallClient()
+Calls Client.
+```lua
+CSC:CallClient(Player : Player, EventName : String, Arguments : Tuple)
 ```
