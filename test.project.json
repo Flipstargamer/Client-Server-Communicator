@@ -1,0 +1,13 @@
+{
+  "name": "CSC",
+  "tree": {
+    "$className": "DataModel",
+
+    "Workspace": {
+      "$className": "Workspace",
+      "CSC": {
+        "$path": "src/"
+      }
+    }
+  }
+}
