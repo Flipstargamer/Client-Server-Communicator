@@ -1,5 +1,5 @@
 # Client and Server Communicator
-Roblox remote events but in one module.
+A ROBLOX module that allows server and client to communicate a bit easier.
 
 ## Installation
 Download module and put it in workspace.
@@ -52,4 +52,10 @@ end)
 Calls Client.
 ```lua
 CSC:CallClient(Player : Player, EventName : String, Arguments : Tuple)
+```
+
+### :CallAllClients()
+Calls all the clients.
+```lua
+CSC:CallAllClients(EventName : String, Arguments : Tuple)
 ```
