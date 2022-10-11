@@ -1,7 +1,7 @@
 {
   "name": "CSC",
   "tree": {
-    "$className": "DataModels",
+    "$className": "DataModel",
 
     "Workspace": {
       "$className": "Workspace",
