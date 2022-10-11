@@ -3,8 +3,8 @@
   "tree": {
     "$className": "DataModel",
 
-    "Workspace": {
-      "$className": "Workspace",
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
       "CSC": {
         "$path": "src/"
       }
