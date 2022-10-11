@@ -11,7 +11,6 @@ local MainEvent:RemoteEvent
 local RemoteFunction:RemoteFunction
 
 local ServerCalled:BindableEvent
-local ServerInvoked:BindableEvent
 
 function Server:Init()
     RemoteFunction = Instance.new("RemoteEvent")
@@ -24,11 +23,7 @@ function Server:Init()
     ServerCalled = Instance.new("BindableEvent")
     ServerCalled.Name = "ServerCalled"
     ServerCalled.Parent = script
-    ServerInvoked = Instance.new("BindableEvent")
-    ServerInvoked.Name = "ServerInvoked"
-    ServerInvoked.Parent = script
 
-    self.ServerInvoked = ServerInvoked.Event
     self.ServerCalled = ServerCalled.Event
 end
 
@@ -46,9 +41,6 @@ coroutine.resume(coroutine.create(function()
         MainEvent.OnServerEvent:Connect(function(Player, EventName, ...)
             ServerCalled:Fire(Player, EventName, ...)
         end)
-        RemoteFunction.OnServerInvoke = function(Player, EventName, ...)
-            ServerInvoked:Fire(Player, EventName, ...)
-        end
     end
 end))
 

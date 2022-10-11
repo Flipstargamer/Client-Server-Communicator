@@ -8,7 +8,6 @@ end
 local Client = {}
 
 local MainEvent:RemoteEvent = script.Parent:WaitForChild("MainRemote")
-local RemoteFunction:RemoteFunction = script.Parent:WaitForChild("MainFunction")
 
 local ClientCalled:BindableEvent = script:FindFirstChild("ClientCalled")
 if not ClientCalled then
@@ -25,7 +24,6 @@ end
 
 
 Client.ClientCalled = ClientCalled.Event
-Client.ClientInvoked = ClientInvoked.Event
 
 function Client:CallServer(EventName:string, ...)
     MainEvent:FireServer(EventName, ...)
@@ -34,9 +32,5 @@ end
 MainEvent.OnClientEvent:Connect(function(EventName, ...)
     ClientCalled:Fire(EventName, ...)
 end)
-
-RemoteFunction.OnClientInvoke = function(EventName, ...)
-    ClientInvoked:Fire(EventName, ...)
-end
 
 return Client
