@@ -35,6 +35,12 @@ function Server:CallAllClients(EventName:string, ...)
     MainEvent:FireAllClients(EventName, ...)
 end
 
+function Server:CallClientsInTable(Players:table, EventName:string, ...)
+    for _, Player in ipairs(Players) do
+        MainEvent:FireClient(Player)
+    end
+end
+
 coroutine.resume(coroutine.create(function()
     local Wait = script.Parent:WaitForChild("MainRemote")
     if Wait then
