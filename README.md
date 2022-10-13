@@ -59,3 +59,9 @@ Calls all the clients.
 ```lua
 CSC:CallAllClients(EventName : String, Arguments : Tuple)
 ```
+
+### :CallAllClientsInTable()
+Calls all the clients in a table given.
+```lua
+CSC:CallAllClientsInTable(Players: Table, EventName : String, Arguments : Tuple)
+```
