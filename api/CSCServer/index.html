@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="generator" content="Docusaurus v2.0.1">
 <title data-rh="true">CSCServer | Client-Server-Communicator</title><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://Flipstargamer.github.io/Client-Server-Communicator/api/CSCServer"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="CSCServer | Client-Server-Communicator"><meta data-rh="true" name="description" content="The Server Side of CSC"><meta data-rh="true" property="og:description" content="The Server Side of CSC"><link data-rh="true" rel="canonical" href="https://Flipstargamer.github.io/Client-Server-Communicator/api/CSCServer"><link data-rh="true" rel="alternate" href="https://Flipstargamer.github.io/Client-Server-Communicator/api/CSCServer" hreflang="en"><link data-rh="true" rel="alternate" href="https://Flipstargamer.github.io/Client-Server-Communicator/api/CSCServer" hreflang="x-default"><link rel="stylesheet" href="/Client-Server-Communicator/assets/css/styles.77d02042.css">
-<link rel="preload" href="/Client-Server-Communicator/assets/js/runtime~main.2f7aef70.js" as="script">
-<link rel="preload" href="/Client-Server-Communicator/assets/js/main.fb6e53e2.js" as="script">
+<link rel="preload" href="/Client-Server-Communicator/assets/js/runtime~main.906e2f57.js" as="script">
+<link rel="preload" href="/Client-Server-Communicator/assets/js/main.605dfbef.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -14,7 +14,7 @@
 <p>The Server Side of CSC</p>
 </div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="properties">Properties<a class="hash-link" href="#properties" title="Direct link to heading">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ServerCalled"><code style="text-decoration:none">ServerCalled</code><a class="hash-link" href="#ServerCalled" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Flipstargamer/Client-Server-Communicator/blob/master/src/CSCServer/init.lua#L51"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>CSCServer<!-- -->.<!-- -->ServerCalled<!-- -->:<!-- --> </code> <code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/RBXScriptSignal" target="_blank" rel="noopener noreferrer">RBXScriptSignal<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code></div><div>
 <p>A signal that fires when server is called.</p>
-<pre class="language-lua"><code class="language-lua">CSC<span class="token punctuation">.</span>ServerCalled<span class="token punctuation">:</span><span class="token function">Connect</span><span class="token punctuation">(</span>EventName<span class="token punctuation">,</span> ArgumentOne<span class="token punctuation">,</span> ArgumentTwo<span class="token punctuation">)</span>
+<pre class="language-lua"><code class="language-lua">CSC<span class="token punctuation">.</span>ServerCalled<span class="token punctuation">:</span><span class="token function">Connect</span><span class="token punctuation">(</span>Player<span class="token punctuation">,</span> EventName<span class="token punctuation">,</span> ArgumentOne<span class="token punctuation">,</span> ArgumentTwo<span class="token punctuation">)</span>
 </code></pre>
 </div><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a class="hash-link" href="#functions" title="Direct link to heading">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Init"><code style="text-decoration:none">Init</code><a class="hash-link" href="#Init" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Flipstargamer/Client-Server-Communicator/blob/master/src/CSCServer/init.lua#L31"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>CSCServer<!-- -->:</code><code class="green_DgR4">Init</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Inits the CDC.</p>
@@ -28,7 +28,7 @@
 <p>Calls all clients that are available.</p>
 <pre class="language-lua"><code class="language-lua">CSC<span class="token punctuation">:</span><span class="token function">CallAllClients</span><span class="token punctuation">(</span><span class="token string">"Hey This is a test name."</span><span class="token punctuation">,</span> AArgumentVar<span class="token punctuation">,</span> ASecondArgumentVar<span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="CallClientsInTable"><code style="text-decoration:none">CallClientsInTable</code><a class="hash-link" href="#CallClientsInTable" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Flipstargamer/Client-Server-Communicator/blob/master/src/CSCServer/init.lua#L104"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>CSCServer<!-- -->:</code><code class="green_DgR4">CallClientsInTable</code><code>(</code><div class="inset_uKQm"><div><code>Players<!-- -->: </code><code class="blue_P4bS">table</code><code>,</code></div><div><code>EventName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>...<!-- -->: </code><code class="blue_P4bS">Tuple</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="CallClientsInTable"><code style="text-decoration:none">CallClientsInTable</code><a class="hash-link" href="#CallClientsInTable" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><span class="releaseVersion_EonW">unreleased</span><a class="sourceButton_sEho" href="https://github.com/Flipstargamer/Client-Server-Communicator/blob/master/src/CSCServer/init.lua#L105"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>CSCServer<!-- -->:</code><code class="green_DgR4">CallClientsInTable</code><code>(</code><div class="inset_uKQm"><div><code>Players<!-- -->: </code><code class="blue_P4bS">table</code><code>,</code></div><div><code>EventName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>...<!-- -->: </code><code class="blue_P4bS">Tuple</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
 <div class="admonition admonition-caution alert alert--warning">
   <div class="admonition-heading">
     <h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -133,8 +133,9 @@ CSC<span class="token punctuation">:</span><span class="token function">CallClie
             ],
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
+            &quot;unreleased&quot;: true,
             &quot;source&quot;: {
-                &quot;line&quot;: 104,
+                &quot;line&quot;: 105,
                 &quot;path&quot;: &quot;src/CSCServer/init.lua&quot;
             }
         }
@@ -142,7 +143,7 @@ CSC<span class="token punctuation">:</span><span class="token function">CallClie
     &quot;properties&quot;: [
         {
             &quot;name&quot;: &quot;ServerCalled&quot;,
-            &quot;desc&quot;: &quot;A signal that fires when server is called.\n```lua\nCSC.ServerCalled:Connect(EventName, ArgumentOne, ArgumentTwo)\n```\n    &quot;,
+            &quot;desc&quot;: &quot;A signal that fires when server is called.\n```lua\nCSC.ServerCalled:Connect(Player, EventName, ArgumentOne, ArgumentTwo)\n```\n    &quot;,
             &quot;lua_type&quot;: &quot;RBXScriptSignal&quot;,
             &quot;source&quot;: {
                 &quot;line&quot;: 51,
@@ -161,7 +162,7 @@ CSC<span class="token punctuation">:</span><span class="token function">CallClie
         &quot;path&quot;: &quot;src/CSCServer/init.lua&quot;
     }
 }</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#ServerCalled" class="table-of-contents__link toc-highlight">ServerCalled</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#CallAllClients" class="table-of-contents__link toc-highlight">:CallAllClients</a></li><li><a href="#CallClient" class="table-of-contents__link toc-highlight">:CallClient</a></li><li><a href="#CallClientsInTable" class="table-of-contents__link toc-highlight">:CallClientsInTable</a></li><li><a href="#Init" class="table-of-contents__link toc-highlight">:Init</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2022 Flipstargamer. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
-<script src="/Client-Server-Communicator/assets/js/runtime~main.2f7aef70.js"></script>
-<script src="/Client-Server-Communicator/assets/js/main.fb6e53e2.js"></script>
+<script src="/Client-Server-Communicator/assets/js/runtime~main.906e2f57.js"></script>
+<script src="/Client-Server-Communicator/assets/js/main.605dfbef.js"></script>
 </body>
 </html>
