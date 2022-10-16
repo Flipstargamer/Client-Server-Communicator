@@ -83,13 +83,7 @@ end
 
 --[=[
     @within CSCServer
-    @unreleased
-
-    :::caution Testing
-    This method is being tested.
-    Please report any bugs to us using Github Issues.
-    :::
-
+    @since v1.1.0
     Calls clients in a table.
 
     ```lua
