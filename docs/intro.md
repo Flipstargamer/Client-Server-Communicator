@@ -1,4 +1,7 @@
-## Introduction
+---
+sidebar_position: 1
+---
+# Introduction
 A ROBLOX module that allows server and client to communicate a bit easier.
 
 ## Installation
