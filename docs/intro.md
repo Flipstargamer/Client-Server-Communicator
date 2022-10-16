@@ -1,7 +1,8 @@
-# Client and Server Communicator
+---
+sidebar_position: 1
+---
+# Introduction
 A ROBLOX module that allows server and client to communicate a bit easier.
-
-[Docs](https://flipstargamer.github.io/Client-Server-Communicator/)
 
 ## Installation
 Download module and put it in Replicated Storage.
