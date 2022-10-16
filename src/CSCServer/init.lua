@@ -7,6 +7,12 @@ if RunService:IsClient() then
 end
 
 --[=[
+    @within CSCServer
+    @type Seconds number
+]=]
+type Seconds = number
+
+--[=[
     @class CSCServer
     @server
 
@@ -45,7 +51,7 @@ function Server:Init()
         @within CSCServer
         A signal that fires when server is called.
         ```lua
-        CSC.ServerCalled:Connect(EventName, ArgumentOne, ArgumentTwo)
+        CSC.ServerCalled:Connect(Player, EventName, ArgumentOne, ArgumentTwo)
         ```
     ]=]
     self.ServerCalled = ServerCalled.Event
@@ -83,12 +89,7 @@ end
 
 --[=[
     @within CSCServer
-
-    :::caution Testing
-    This method is being tested.
-    Please report any bugs to us using Github Issues.
-    :::
-
+    @since v1.1.0
     Calls clients in a table.
 
     ```lua
@@ -105,6 +106,19 @@ function Server:CallClientsInTable(Players:table, EventName:string, ...)
     for _, Player in ipairs(Players) do
         MainEvent:FireClient(Player)
     end
+end
+
+--[=[
+    @within CSCServer
+    @yields
+    @unreleased
+    Calls specified client after a certain amount of time.
+
+    @param ... Tuple
+]=]
+function Server:DelayCallClient(Delay:Seconds, Player:Player, EventName:string, ...)
+    task.wait(Delay)
+    self:CallClient(Player, EventName, ...)
 end
 
 coroutine.resume(coroutine.create(function()

@@ -6,6 +6,12 @@ if RunService:IsServer() then
 end
 
 --[=[
+    @within CSCClient
+    @type Seconds number
+]=]
+type Seconds = number
+
+--[=[
     @class CSCClient
     @client
 
@@ -44,6 +50,19 @@ Client.ClientCalled = ClientCalled.Event
 ]=]
 function Client:CallServer(EventName:string, ...)
     MainEvent:FireServer(EventName, ...)
+end
+
+--[=[
+    @within CSCServer
+    @yields
+    @unreleased
+    Calls the server after a certain amount of time.
+
+    @param ... Tuple
+]=]
+function Client:DelayCallServer(Delay:Seconds, EventName:string, ...)
+    task.wait(Delay)
+    self:CallServer(EventName, ...)
 end
 
 MainEvent.OnClientEvent:Connect(function(EventName, ...)
