@@ -12,9 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      with:
+        with:
           node-version: "14"
       - run: npm i -g moonwave@latest
       - name: Deploy
-      run: |
-        moonwave build --publish
+        run: |
+          git config --global user.email "support+actions@github.com"
+          git config --global user.name "github-actions-bot"
+          moonwave build --publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
