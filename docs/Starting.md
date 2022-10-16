@@ -19,7 +19,7 @@ CSC:Init() -- This is IMPORTANT don't forget it.
 ### Wally
 Add this to your dependencies list:
 ```
-CSC = "flipstargamer/clsecom@1.1.0"
+CSC = "flipstargamer/clsecom@1.1.1"
 ```
 
 ## Learing the Module
