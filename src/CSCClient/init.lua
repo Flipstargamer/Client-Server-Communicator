@@ -5,6 +5,12 @@ if RunService:IsServer() then
     return nil
 end
 
+--[=[
+    @class CSCClient
+    @client
+
+    The Client Side of CSC
+]=]
 local Client = {}
 
 local MainEvent:RemoteEvent = script.Parent:WaitForChild("MainRemote")
@@ -25,6 +31,17 @@ end
 
 Client.ClientCalled = ClientCalled.Event
 
+--[=[
+    @within CSCClient
+
+    Calls the server.
+
+    ```lua
+    CDC:CallServer("Hey This is a test name.", AArgumentVar, ASecondArgumentVar)
+    ```
+
+    @param ... Tuple
+]=]
 function Client:CallServer(EventName:string, ...)
     MainEvent:FireServer(EventName, ...)
 end

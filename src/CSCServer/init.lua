@@ -1,3 +1,4 @@
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 if RunService:IsClient() then
@@ -5,6 +6,12 @@ if RunService:IsClient() then
     return nil
 end
 
+--[=[
+    @class CSCServer
+    @server
+
+    The Server Side of CSC
+]=]
 local Server = {}
 
 local MainEvent:RemoteEvent
@@ -12,6 +19,15 @@ local RemoteFunction:RemoteFunction
 
 local ServerCalled:BindableEvent
 
+--[=[
+    @within CSCServer
+
+    Inits the CDC.
+
+    ```lua
+    CDC:Init()
+    ```
+]=]
 function Server:Init()
     RemoteFunction = Instance.new("RemoteEvent")
     RemoteFunction.Name = "MainFunction"
@@ -24,17 +40,67 @@ function Server:Init()
     ServerCalled.Name = "ServerCalled"
     ServerCalled.Parent = script
 
+    --[=[
+        @prop ServerCalled RBXScriptSignal
+        @within CSCServer
+        A signal that fires when server is called.
+        ```lua
+        CSC.ServerCalled:Connect(EventName, ArgumentOne, ArgumentTwo)
+        ```
+    ]=]
     self.ServerCalled = ServerCalled.Event
 end
 
+--[=[
+    @within CSCServer
+
+    Calls a client that is given.
+
+    ```lua
+    CSC:CallClient(APlayerVar, "Hey This is a test name.", AArgumentVar, ASecondArgumentVar)
+    ```
+
+    @param ... Tuple
+]=]
 function Server:CallClient(Player:Player, EventName:string, ...)
     MainEvent:FireClient(Player, EventName, ...)
 end
 
+--[=[
+    @within CSCServer
+
+    Calls all clients that are available.
+
+    ```lua
+    CSC:CallAllClients("Hey This is a test name.", AArgumentVar, ASecondArgumentVar)
+    ```
+
+    @param ... Tuple
+]=]
 function Server:CallAllClients(EventName:string, ...)
     MainEvent:FireAllClients(EventName, ...)
 end
 
+--[=[
+    @within CSCServer
+
+    :::caution Testing
+    This method is being tested.
+    Please report any bugs to us using Github Issues.
+    :::
+
+    Calls clients in a table.
+
+    ```lua
+    local TableOfPlayers = {
+        APlayerVar,
+        SecondPlayerVar
+    }
+    CSC:CallClientsInTable(TableOfPlayers, "Hey This is a test name.", AArgumentVar, ASecondArgumentVar) -- You can add as much arguments as you want.
+    ```
+
+    @param ... Tuple
+]=]
 function Server:CallClientsInTable(Players:table, EventName:string, ...)
     for _, Player in ipairs(Players) do
         MainEvent:FireClient(Player)
