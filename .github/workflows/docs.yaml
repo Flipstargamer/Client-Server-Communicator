@@ -1,4 +1,4 @@
-name: docs.yaml
+name: Docs
 
 on:
   push:
