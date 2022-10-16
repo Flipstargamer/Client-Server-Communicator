@@ -45,7 +45,7 @@ function Server:Init()
         @within CSCServer
         A signal that fires when server is called.
         ```lua
-        CSC.ServerCalled:Connect(EventName, ArgumentOne, ArgumentTwo)
+        CSC.ServerCalled:Connect(Player, EventName, ArgumentOne, ArgumentTwo)
         ```
     ]=]
     self.ServerCalled = ServerCalled.Event

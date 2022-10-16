@@ -28,7 +28,14 @@ if not ClientInvoked then
     ClientInvoked.Parent = script
 end
 
-
+--[=[
+    @prop ClientCalled RBXScriptSignal
+    @within CSCClient
+    A signal that fires when client is called.
+    ```lua
+    CSC.ClientCalled:Connect(EventName, ArgumentOne, ArgumentTwo)
+    ```
+]=]
 Client.ClientCalled = ClientCalled.Event
 
 --[=[
