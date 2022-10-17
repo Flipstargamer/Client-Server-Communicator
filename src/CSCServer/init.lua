@@ -20,6 +20,8 @@ type Seconds = number
 ]=]
 local Server = {}
 
+local Functions = {}
+
 local MainEvent:RemoteEvent
 local RemoteFunction:RemoteFunction
 
@@ -121,12 +123,39 @@ function Server:DelayCallClient(Delay:Seconds, Player:Player, EventName:string, 
     self:CallClient(Player, EventName, ...)
 end
 
+--[=[
+    @within CSCServer
+    @unreleased
+    Adds a callback to be executed when server is invoked.
+]=]
+function Server:AddCallback(Callback: (Player:Player, EventName:string, ...any) -> any)
+    table.insert(Functions, Callback)
+end
+
+--[=[
+    @within CSCServer
+    @unreleased
+    @yields
+    Invokes the client and executes all callbacks added to it.
+
+    @param ... Tuple
+    @return any
+]=]
+function Server:InvokeClient(Player:Player, EventName:string, ...)
+    RemoteFunction:InvokeClient(Player, EventName, ...)
+end
+
 coroutine.resume(coroutine.create(function()
     local Wait = script.Parent:WaitForChild("MainRemote")
     if Wait then
         MainEvent.OnServerEvent:Connect(function(Player, EventName, ...)
             ServerCalled:Fire(Player, EventName, ...)
         end)
+        RemoteFunction.OnServerInvoke = function(Player:Player, EventName:string, ...)
+            for _, Callback in ipairs(Functions) do
+                Callback(Player, EventName, ...)
+            end
+        end
     end
 end))
 

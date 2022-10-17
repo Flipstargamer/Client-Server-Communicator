@@ -15,23 +15,22 @@ type Seconds = number
     @class CSCClient
     @client
 
-    The Client Side of CSC
+    The Client Side of CSC.
+
+    Yields thread till server was init.
 ]=]
 local Client = {}
 
+local Functions = {}
+
 local MainEvent:RemoteEvent = script.Parent:WaitForChild("MainRemote")
+local MainFunction:RemoteFunction = script.Parent:WaitForChild("RemoteFunction")
 
 local ClientCalled:BindableEvent = script:FindFirstChild("ClientCalled")
 if not ClientCalled then
     ClientCalled = Instance.new("BindableEvent")
     ClientCalled.Name = "ClientCalled"
     ClientCalled.Parent = script
-end
-local ClientInvoked:BindableEvent = script:FindFirstChild("ClientInvoked")
-if not ClientInvoked then
-    ClientInvoked = Instance.new("BindableEvent")
-    ClientInvoked.Name = "ClientInvoked"
-    ClientInvoked.Parent = script
 end
 
 --[=[
@@ -72,8 +71,36 @@ function Client:DelayCallServer(Delay:Seconds, EventName:string, ...)
     self:CallServer(EventName, ...)
 end
 
+--[=[
+    @within CSCClient
+    @unreleased
+    Adds a callback to be executed when client is invoked.
+]=]
+function Client:AddCallback(Callback: (EventName:string, ...any) -> any)
+    table.insert(Functions, Callback)
+end
+
+--[=[
+    @within CSCClient
+    @unreleased
+    @yields
+    Invokes the server and executes all callbacks added to it.
+
+    @param ... Tuple
+    @return any
+]=]
+function Client:InvokeServer(EventName:string, ...)
+    return MainFunction:InvokeServer(EventName, ...)
+end
+
 MainEvent.OnClientEvent:Connect(function(EventName, ...)
     ClientCalled:Fire(EventName, ...)
 end)
+
+MainFunction.OnClientInvoke = function(EventName, ...)
+    for _, Callback in ipairs(Functions) do
+        Callback(EventName, ...)
+    end 
+end
 
 return Client
