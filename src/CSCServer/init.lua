@@ -126,6 +126,7 @@ end
 --[=[
     @within CSCServer
     @unreleased
+    @tag Experimental
     Adds a callback to be executed when server is invoked.
 
     ```lua
@@ -142,6 +143,7 @@ end
 --[=[
     @within CSCServer
     @unreleased
+    @tag Experimental
     @yields
     Invokes the client and executes all callbacks added to it.
 
