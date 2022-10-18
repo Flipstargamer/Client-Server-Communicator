@@ -113,7 +113,7 @@ end
 --[=[
     @within CSCServer
     @yields
-    @unreleased
+    @since 1.2.0
     Calls specified client after a certain amount of time.
 
     @param ... Tuple
@@ -125,7 +125,7 @@ end
 
 --[=[
     @within CSCServer
-    @unreleased
+    @since 1.2.0
     @tag Experimental
     Adds a callback to be executed when server is invoked.
 
@@ -142,7 +142,7 @@ end
 
 --[=[
     @within CSCServer
-    @unreleased
+    @since 1.2.0
     @tag Experimental
     @yields
     Invokes the client and executes all callbacks added to it.
