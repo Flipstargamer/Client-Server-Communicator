@@ -59,7 +59,7 @@ function Client:CallServer(EventName:string, ...)
 end
 
 --[=[
-    @within CSCServer
+    @within CSCClient
     @yields
     @unreleased
     Calls the server after a certain amount of time.
