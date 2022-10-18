@@ -7,12 +7,20 @@ if RunService:IsClient() then
 end
 
 --[=[
+    @within CSCServer
+    @type Seconds number
+]=]
+type Seconds = number
+
+--[=[
     @class CSCServer
     @server
 
     The Server Side of CSC
 ]=]
 local Server = {}
+
+local Functions = {}
 
 local MainEvent:RemoteEvent
 local RemoteFunction:RemoteFunction
@@ -102,12 +110,62 @@ function Server:CallClientsInTable(Players:table, EventName:string, ...)
     end
 end
 
+--[=[
+    @within CSCServer
+    @yields
+    @unreleased
+    Calls specified client after a certain amount of time.
+
+    @param ... Tuple
+]=]
+function Server:DelayCallClient(Delay:Seconds, Player:Player, EventName:string, ...)
+    task.wait(Delay)
+    self:CallClient(Player, EventName, ...)
+end
+
+--[=[
+    @within CSCServer
+    @unreleased
+    Adds a callback to be executed when server is invoked.
+
+    ```lua
+    local Callback = function(Player, EventName, ArgumentOne, ArgumentTwo)
+        -- Code
+    end
+    CSC:AddCallback(Callback)
+    ```
+]=]
+function Server:AddCallback(Callback: (Player:Player, EventName:string, ...any) -> any)
+    table.insert(Functions, Callback)
+end
+
+--[=[
+    @within CSCServer
+    @unreleased
+    @yields
+    Invokes the client and executes all callbacks added to it.
+
+    ```lua
+    CSC:InvokeServer(Player, "This is a Event Name", ArgumentOne, ArgumentTwo)
+    ```
+    @param ... Tuple
+    @return any
+]=]
+function Server:InvokeClient(Player:Player, EventName:string, ...)
+    RemoteFunction:InvokeClient(Player, EventName, ...)
+end
+
 coroutine.resume(coroutine.create(function()
     local Wait = script.Parent:WaitForChild("MainRemote")
     if Wait then
         MainEvent.OnServerEvent:Connect(function(Player, EventName, ...)
             ServerCalled:Fire(Player, EventName, ...)
         end)
+        RemoteFunction.OnServerInvoke = function(Player:Player, EventName:string, ...)
+            for _, Callback in ipairs(Functions) do
+                Callback(Player, EventName, ...)
+            end
+        end
     end
 end))
 
