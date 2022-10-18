@@ -75,6 +75,13 @@ end
     @within CSCClient
     @unreleased
     Adds a callback to be executed when client is invoked.
+
+    ```lua
+    local Callback = function(EventName, ArgumentOne, ArgumentTwo)
+        -- Code
+    end
+    CSC:AddCallback(Callback)
+    ```
 ]=]
 function Client:AddCallback(Callback: (EventName:string, ...any) -> any)
     table.insert(Functions, Callback)
@@ -86,6 +93,9 @@ end
     @yields
     Invokes the server and executes all callbacks added to it.
 
+    ```lua
+    CSC:InvokeServer("This is a Event Name", ArgumentOne, ArgumentTwo)
+    ```
     @param ... Tuple
     @return any
 ]=]
