@@ -146,10 +146,10 @@ end
     Adds a callback to be executed when server is invoked.
 
     ```lua
-    local Callback = function(Player, EventName, ArgumentOne, ArgumentTwo)
+    local Callback = function(Player, ArgumentOne, ArgumentTwo)
         -- Code
     end
-    CSC:AddCallback(Callback)
+    CSC:AddCallback("This is a event name.",Callback)
     ```
 ]=]
 function Server:AddCallback(EventName:string, Callback: (Player:Player, ...any) -> any)

@@ -78,10 +78,10 @@ end
     Adds a callback to be executed when client is invoked.
 
     ```lua
-    local Callback = function(EventName, ArgumentOne, ArgumentTwo)
+    local Callback = function(ArgumentOne, ArgumentTwo)
         -- Code
     end
-    CSC:AddCallback(Callback)
+    CSC:AddCallback("This is a event name.",Callback)
     ```
 ]=]
 function Client:AddCallback(EventName:string, Callback: (...any) -> any)
