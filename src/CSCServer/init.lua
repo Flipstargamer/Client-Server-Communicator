@@ -26,7 +26,7 @@ local Promise
 if script.Parent:FindFirstChild("Packages") then
     Promise = require(script.Parent:WaitForChild("Packages"):WaitForChild("Promise"))
 else
-    Promise = require(script.Parent:WaitForChild("Promise"))
+    Promise = require(script.Parent.Parent:WaitForChild("Promise"))
 end
 
 local MainEvent:RemoteEvent
