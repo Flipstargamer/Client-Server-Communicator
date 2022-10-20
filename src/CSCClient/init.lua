@@ -24,7 +24,7 @@ local Client = {}
 local Functions = {}
 
 local MainEvent:RemoteEvent = script.Parent:WaitForChild("MainRemote")
-local MainFunction:RemoteFunction = script.Parent:WaitForChild("RemoteFunction")
+local MainFunction:RemoteFunction = script.Parent:WaitForChild("MainFunction")
 
 local ClientCalled:BindableEvent = script:FindFirstChild("ClientCalled")
 if not ClientCalled then
@@ -84,8 +84,8 @@ end
     CSC:AddCallback(Callback)
     ```
 ]=]
-function Client:AddCallback(Callback: (EventName:string, ...any) -> any)
-    table.insert(Functions, Callback)
+function Client:AddCallback(EventName:string, Callback: (...any) -> any)
+    table.insert(Functions, {EventName, Callback})
 end
 
 --[=[
@@ -110,9 +110,13 @@ MainEvent.OnClientEvent:Connect(function(EventName, ...)
 end)
 
 MainFunction.OnClientInvoke = function(EventName, ...)
+    local ToReturn
     for _, Callback in ipairs(Functions) do
-        Callback(EventName, ...)
-    end 
+        if Callback[1] == EventName then
+            ToReturn = Callback[2](...)
+        end
+    end
+    return ToReturn
 end
 
 return Client

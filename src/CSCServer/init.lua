@@ -152,8 +152,8 @@ end
     CSC:AddCallback(Callback)
     ```
 ]=]
-function Server:AddCallback(Callback: (Player:Player, EventName:string, ...any) -> any)
-    table.insert(Functions, Callback)
+function Server:AddCallback(EventName:string, Callback: (Player:Player, ...any) -> any)
+    table.insert(Functions, {EventName, Callback})
 end
 
 --[=[
@@ -170,7 +170,7 @@ end
     @return any
 ]=]
 function Server:InvokeClient(Player:Player, EventName:string, ...)
-    RemoteFunction:InvokeClient(Player, EventName, ...)
+    return RemoteFunction:InvokeClient(Player, EventName, ...)
 end
 
 coroutine.resume(coroutine.create(function()
@@ -180,9 +180,13 @@ coroutine.resume(coroutine.create(function()
             ServerCalled:Fire(Player, EventName, ...)
         end)
         RemoteFunction.OnServerInvoke = function(Player:Player, EventName:string, ...)
+            local ToReturn
             for _, Callback in ipairs(Functions) do
-                Callback(Player, EventName, ...)
+                if Callback[1] == EventName then
+                    ToReturn = Callback[2](Player, ...)
+                end
             end
+            return ToReturn
         end
     end
 end))
