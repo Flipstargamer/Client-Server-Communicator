@@ -35,6 +35,7 @@ local RemoteFunction:RemoteFunction
 local ServerCalled:BindableEvent
 
 --[=[
+    @method Init
     @within CSCServer
 
     Inits the CDC.
