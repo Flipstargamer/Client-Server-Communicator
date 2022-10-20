@@ -22,6 +22,13 @@ local Server = {}
 
 local Functions = {}
 
+local Promise
+if script.Parent:FindFirstChild("Packages") then
+    Promise = require(script.Parent:WaitForChild("Packages"):WaitForChild("Promise"))
+else
+    Promise = require(script.Parent:WaitForChild("Promise"))
+end
+
 local MainEvent:RemoteEvent
 local RemoteFunction:RemoteFunction
 
@@ -33,30 +40,39 @@ local ServerCalled:BindableEvent
     Inits the CDC.
 
     ```lua
-    CDC:Init()
+    CDC:Init():catch(warn)
     ```
 ]=]
+
+local Init = false
 function Server:Init()
-    RemoteFunction = Instance.new("RemoteEvent")
-    RemoteFunction.Name = "MainFunction"
-    RemoteFunction.Parent = script.Parent
-    MainEvent = Instance.new("RemoteEvent")
-    MainEvent.Name = "MainRemote"
-    MainEvent.Parent = script.Parent
+    if Init then
+        return Promise.reject("CSC is already initialize.")
+    end
+    Init = true
 
-    ServerCalled = Instance.new("BindableEvent")
-    ServerCalled.Name = "ServerCalled"
-    ServerCalled.Parent = script
+    return Promise.new(function()
+        RemoteFunction = Instance.new("RemoteFunction")
+        RemoteFunction.Name = "MainFunction"
+        RemoteFunction.Parent = script.Parent
+        MainEvent = Instance.new("RemoteEvent")
+        MainEvent.Name = "MainRemote"
+        MainEvent.Parent = script.Parent
 
-    --[=[
-        @prop ServerCalled RBXScriptSignal
-        @within CSCServer
-        A signal that fires when server is called.
-        ```lua
-        CSC.ServerCalled:Connect(Player, EventName, ArgumentOne, ArgumentTwo)
-        ```
-    ]=]
-    self.ServerCalled = ServerCalled.Event
+        ServerCalled = Instance.new("BindableEvent")
+        ServerCalled.Name = "ServerCalled"
+        ServerCalled.Parent = script
+
+        --[=[
+            @prop ServerCalled RBXScriptSignal
+            @within CSCServer
+            A signal that fires when server is called.
+            ```lua
+            CSC.ServerCalled:Connect(Player, EventName, ArgumentOne, ArgumentTwo)
+            ```
+        ]=]
+        self.ServerCalled = ServerCalled.Event
+    end)
 end
 
 --[=[

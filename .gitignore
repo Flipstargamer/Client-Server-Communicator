@@ -5,4 +5,7 @@
 /*.rbxlx.lock
 /*.rbxl.lock
 
+/src/Packages
+/src/wally.lock
+
 /build
