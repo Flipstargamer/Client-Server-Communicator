@@ -1,6 +1,8 @@
 # Client and Server Communicator
 A ROBLOX module that allows server and client to communicate a bit easier.
 
+This has been archived as I will no longer be supporting it.
+
 [Docs](https://flipstargamer.github.io/Client-Server-Communicator/)
 
 ## Installation
